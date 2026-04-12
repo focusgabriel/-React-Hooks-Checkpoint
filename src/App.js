@@ -1,15 +1,21 @@
 // import MoviePlaylist from "./movieShow"
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useRef} from "react";
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Filter from './Filter';
+import Movies from "./movieList";
 
 function MovieList(){
   const [filterType, setFilterType] = useState("title");
   const [filterValue, setFilterValue] = useState("");
   
   const [movie, SetMovie] = useState([]);
+  const [Title, setTitle] = useState();
+  const [Description, setDescription] = useState();
+  const [Rating, setRating] = useState();
+  const [PosterURL, setPosterURL] = useState();
+
   useEffect(()=> {
       const Movies = [
       {
@@ -31,8 +37,16 @@ function MovieList(){
         posterURL: "https://dayofthejackal.com"
       }
     ];
+    
     SetMovie(Movies);
   }, []);
+
+  function handleClick(){
+    setTitle(Movies.Title)
+    setDescription(Movies.Description)
+    setRating(Movies.setRating)
+    setPosterURL(Movies.PosterURL)
+  }
 
   const handleFilterChange = (type, value) => {
     setFilterType(type);
@@ -64,8 +78,18 @@ function MovieList(){
         </div>
       );
   }
+
   return(
     <div>
+      <div>
+        <h1> Add New Movies</h1>
+        <input ref={Title} type="text" placeholder="enter movies title" />
+        <input ref={Description} type="text" placeholder="enter movies description" />
+        <input ref={Rating} type="text" placeholder="enter movies rating" />
+        <input ref={PosterURL} type="text" placeholder="enter movies posterURL" />
+        
+        <button onClick={handleClick}>Submit</button>
+      </div>
       <h1>Movie List</h1>
       <Filter onFilterChange={handleFilterChange} filterType={filterType} filterValue={filterValue} />
       {filteredMovies.map((item, index) => (
