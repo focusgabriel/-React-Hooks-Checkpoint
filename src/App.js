@@ -61,7 +61,7 @@ function MovieList(){
             <ListGroup.Item>Title: {title} </ListGroup.Item>
             <ListGroup.Item>Description: {description} </ListGroup.Item>
             <ListGroup.Item>Rating: {rating} </ListGroup.Item>
-            <ListGroup.Item>PosterURL: {posterURL} </ListGroup.Item>
+            <ListGroup.Item>URL: {posterURL} </ListGroup.Item>
           </ListGroup>
         </Card>
         </div>
