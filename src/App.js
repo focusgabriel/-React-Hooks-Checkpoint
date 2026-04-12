@@ -5,48 +5,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Filter from './Filter';
 import Movies from "./movieList";
+import './style.css'
 
 function MovieList(){
   const [filterType, setFilterType] = useState("title");
   const [filterValue, setFilterValue] = useState("");
   
-  const [movie, SetMovie] = useState([]);
-  const [Title, setTitle] = useState();
-  const [Description, setDescription] = useState();
-  const [Rating, setRating] = useState();
-  const [PosterURL, setPosterURL] = useState();
+  const [movie, SetMovie] = useState([...Movies]);
 
-  useEffect(()=> {
-      const Movies = [
-      {
-        title: "Game of Thrones",
-        description: "Drama, Action, Adventure",
-        rating: 9.0,
-        posterURL: "https://gameofthrones.com"
-      },
-      {
-        title: "Viking",
-        description: "Drama, Action, Adventure",
-        rating: 8.5,
-        posterURL: "https://vikings.com"
-      },
-      {
-        title: "A Day of the Jackal",
-        description: "Action, Thriller, Crime",
-        rating: 8.7,
-        posterURL: "https://dayofthejackal.com"
-      }
-    ];
-    
-    SetMovie(Movies);
-  }, []);
+  const Title = useRef();
+  const Description = useRef();
+  const Rating = useRef();
+  const PosterURL = useRef();
 
   function handleClick(){
-    setTitle(Movies.Title)
-    setDescription(Movies.Description)
-    setRating(Movies.setRating)
-    setPosterURL(Movies.PosterURL)
+    const newMovie = {
+      title: Title.current.value,
+      description: Description.current.value,
+      rating: Number(Rating.current.value),
+      posterURL: PosterURL.current.value
+    };
+
+    SetMovie(prevMovies => [...prevMovies, newMovie]);
+
+    Title.current.value = "";
+    Description.current.value = "";
+    Rating.current.value = "";
+    PosterURL.current.value = "";
   }
+
+
+
 
   const handleFilterChange = (type, value) => {
     setFilterType(type);
@@ -80,22 +69,25 @@ function MovieList(){
   }
 
   return(
-    <div>
-      <div>
+  <div className="main">
+    <div className="filter">
+      <h1>Movie List</h1>
+      <Filter onFilterChange={handleFilterChange} filterType={filterType} filterValue={filterValue} />
+      
+    </div>
+      <div className="addMovie">
         <h1> Add New Movies</h1>
-        <input ref={Title} type="text" placeholder="enter movies title" />
-        <input ref={Description} type="text" placeholder="enter movies description" />
-        <input ref={Rating} type="text" placeholder="enter movies rating" />
-        <input ref={PosterURL} type="text" placeholder="enter movies posterURL" />
+        <input ref={Title} placeholder="enter a title" type="text" />
+        <input ref={Description} placeholder="enter a description" type="text" />
+        <input ref={Rating} placeholder="enter a rating" type="text" />
+        <input ref={PosterURL} placeholder="enter a posterURL" type="text" />
         
         <button onClick={handleClick}>Submit</button>
       </div>
-      <h1>Movie List</h1>
-      <Filter onFilterChange={handleFilterChange} filterType={filterType} filterValue={filterValue} />
       {filteredMovies.map((item, index) => (
         <MovieCard key={index} {...item} />
       ))}
-    </div>
+  </div> 
   );
 }
 

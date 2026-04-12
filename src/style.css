@@ -1,0 +1,46 @@
+body{
+    
+    width: 100%;
+}
+input{
+  display: block;
+  /* outline: none; */
+  margin-top: 10px;
+  width: 100%;  
+  padding: 10px;
+}
+
+button{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #61dafb;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 10px;
+  align-items: center;
+  transform: translateX(50%);
+}
+
+.addMovie{
+    margin-bottom: 20px;
+}
+
+.filter, .addMovie{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.filter h1{
+    text-align: center;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardbox{
+    margin-top: 20px;
+}
