@@ -34,9 +34,6 @@ function MovieList(){
     PosterURL.current.value = "";
   }
 
-
-
-
   const handleFilterChange = (type, value) => {
     setFilterType(type);
     setFilterValue(value);

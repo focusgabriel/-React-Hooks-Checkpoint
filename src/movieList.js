@@ -17,7 +17,8 @@
       description: 'The Assassin ("The Jackal"): Portrayed as a master of disguise, methodical, and operating alone with no known identity. He is incredibly precise, often using custom weapons',
       rating: 8.7,
       posterURL: "https://dayofthejackal.com"
-    }
+    },
+    
   ]
 
   
